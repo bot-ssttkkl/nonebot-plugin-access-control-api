@@ -7,9 +7,7 @@ from .rate_limit import IServiceRateLimit
 from .service_base import IServiceBase
 
 T_Service = TypeVar("T_Service", bound="IService", covariant=True)
-T_ParentService = TypeVar(
-    "T_ParentService", bound=Optional["IService"], covariant=True
-)
+T_ParentService = TypeVar("T_ParentService", bound=Optional["IService"], covariant=True)
 T_ChildService = TypeVar("T_ChildService", bound="IService", covariant=True)
 
 

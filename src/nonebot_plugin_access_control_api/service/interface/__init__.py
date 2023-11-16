@@ -4,4 +4,10 @@ from .service import IService
 from .subservice import ISubService
 from .subservice_owner import ISubServiceOwner
 
-__all__ = ("IService", "INoneBotService", "IPluginService", "ISubService", "ISubServiceOwner")
+__all__ = (
+    "IService",
+    "INoneBotService",
+    "IPluginService",
+    "ISubService",
+    "ISubServiceOwner",
+)

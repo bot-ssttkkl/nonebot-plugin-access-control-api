@@ -35,20 +35,20 @@ class ServicePermissionImpl(IServicePermission):
         )
 
     async def get_permission_by_subject(
-            self, *subject: str, trace: bool = True
+        self, *subject: str, trace: bool = True
     ) -> Optional[Permission]:
         return
         yield None  # noqa
 
     async def get_permissions(
-            self, *, trace: bool = True
+        self, *, trace: bool = True
     ) -> AsyncGenerator[Permission, None]:
         return
         yield None  # noqa
 
     @classmethod
     async def get_all_permissions_by_subject(
-            cls, *subject: str
+        cls, *subject: str
     ) -> AsyncGenerator[Permission, None]:
         return
         yield None  # noqa

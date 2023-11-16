@@ -4,7 +4,6 @@ from typing import Generic, TypeVar, Optional
 
 from nonebot import Bot
 from nonebot.internal.adapter import Event
-from nonebot.internal.matcher import Matcher
 
 from nonebot_plugin_access_control_api.subject import extract_subjects
 
@@ -56,12 +55,12 @@ class IServiceBase(Generic[T_Service, T_ParentService, T_ChildService], ABC):
         return None
 
     async def check(
-            self,
-            bot: Bot,
-            event: Event,
-            *,
-            acquire_rate_limit_token: bool = True,
-            throw_on_fail: bool = False,
+        self,
+        bot: Bot,
+        event: Event,
+        *,
+        acquire_rate_limit_token: bool = True,
+        throw_on_fail: bool = False,
     ) -> bool:
         subjects = extract_subjects(bot, event)
         return await self.check_by_subject(
@@ -72,10 +71,10 @@ class IServiceBase(Generic[T_Service, T_ParentService, T_ChildService], ABC):
 
     @abstractmethod
     async def check_by_subject(
-            self,
-            *subjects: str,
-            acquire_rate_limit_token: bool = True,
-            throw_on_fail: bool = False,
+        self,
+        *subjects: str,
+        acquire_rate_limit_token: bool = True,
+        throw_on_fail: bool = False,
     ) -> bool:
         raise NotImplementedError()
 

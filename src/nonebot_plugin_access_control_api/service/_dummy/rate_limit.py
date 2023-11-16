@@ -38,20 +38,20 @@ class ServiceRateLimitImpl(IServiceRateLimit):
         )
 
     async def get_rate_limit_rules_by_subject(
-            self, *subject: str, trace: bool = True
+        self, *subject: str, trace: bool = True
     ) -> AsyncGenerator[RateLimitRule, None]:
         return
         yield None  # noqa
 
     async def get_rate_limit_rules(
-            self, *, trace: bool = True
+        self, *, trace: bool = True
     ) -> AsyncGenerator[RateLimitRule, None]:
         return
         yield None  # noqa
 
     @classmethod
     async def get_all_rate_limit_rules_by_subject(
-            cls, *subject: str
+        cls, *subject: str
     ) -> AsyncGenerator[RateLimitRule, None]:
         return
         yield None  # noqa
@@ -62,7 +62,7 @@ class ServiceRateLimitImpl(IServiceRateLimit):
         yield None  # noqa
 
     async def add_rate_limit_rule(
-            self, subject: str, time_span: timedelta, limit: int, overwrite: bool = False
+        self, subject: str, time_span: timedelta, limit: int, overwrite: bool = False
     ) -> RateLimitRule:
         raise NotImplementedError()
 
@@ -71,7 +71,7 @@ class ServiceRateLimitImpl(IServiceRateLimit):
         raise NotImplementedError()
 
     async def acquire_token_for_rate_limit_by_subjects_receiving_result(
-            self, *subject: str
+        self, *subject: str
     ) -> AcquireTokenResult:
         return AcquireTokenResult(success=True, token=RateLimitTokenImpl())
 

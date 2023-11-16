@@ -13,7 +13,7 @@ def create_plugin_service(plugin_name: str) -> IPluginService:
 
 
 def get_plugin_service(
-        plugin_name: str, *, raise_on_not_exists: bool = False
+    plugin_name: str, *, raise_on_not_exists: bool = False
 ) -> Optional[IPluginService]:
     return get_nonebot_service().get_plugin_service(
         plugin_name, raise_on_not_exists=raise_on_not_exists
@@ -21,7 +21,7 @@ def get_plugin_service(
 
 
 def get_service_by_qualified_name(
-        qualified_name: str, *, raise_on_not_exists: bool = False
+    qualified_name: str, *, raise_on_not_exists: bool = False
 ) -> Optional[IService]:
     return get_nonebot_service().get_service_by_qualified_name(
         qualified_name, raise_on_not_exists=raise_on_not_exists

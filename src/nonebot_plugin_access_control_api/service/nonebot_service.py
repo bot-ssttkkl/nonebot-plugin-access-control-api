@@ -14,8 +14,7 @@ from ..errors import AccessControlError, AccessControlQueryError
 
 @context.bind_singleton_to(INoneBotService)
 class NoneBotService(
-    Service[None, PluginService],
-    INoneBotService[Service, PluginService]
+    Service[None, PluginService], INoneBotService[Service, PluginService]
 ):
     def __init__(self):
         super().__init__()
@@ -38,7 +37,7 @@ class NoneBotService(
         return self._plugin_services.values()
 
     def _create_plugin_service(
-            self, plugin_name: str, auto_create: bool
+        self, plugin_name: str, auto_create: bool
     ) -> PluginService:
         if plugin_name in self._plugin_services:
             raise ValueError(f"{plugin_name} already created")
@@ -52,7 +51,7 @@ class NoneBotService(
         return self._create_plugin_service(plugin_name, auto_create=False)
 
     def get_plugin_service(
-            self, plugin_name: str, *, raise_on_not_exists: bool = False
+        self, plugin_name: str, *, raise_on_not_exists: bool = False
     ) -> Optional[PluginService]:
         if plugin_name in self._plugin_services:
             return self._plugin_services[plugin_name]
@@ -71,7 +70,7 @@ class NoneBotService(
                 raise AccessControlError("No such plugin")
 
     def get_service_by_qualified_name(
-            self, qualified_name: str, *, raise_on_not_exists: bool = False
+        self, qualified_name: str, *, raise_on_not_exists: bool = False
     ) -> Optional[IService]:
         if qualified_name == "nonebot":
             return self

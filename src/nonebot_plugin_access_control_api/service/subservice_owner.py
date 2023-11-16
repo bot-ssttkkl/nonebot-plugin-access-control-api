@@ -22,7 +22,8 @@ T_ChildService = TypeVar("T_ChildService", bound="SubServiceOwner", covariant=Tr
 class SubServiceOwner(
     Generic[T_Service, T_ParentService, T_ChildService],
     IService[T_Service, T_ParentService, T_ChildService],
-    ISubServiceOwner[T_ChildService], ABC
+    ISubServiceOwner[T_ChildService],
+    ABC,
 ):
     def __init__(self):
         super().__init__()

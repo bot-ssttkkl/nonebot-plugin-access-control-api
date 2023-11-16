@@ -9,8 +9,10 @@ T_ParentService = TypeVar("T_ParentService", bound=Optional[IService], covariant
 T_ChildService = TypeVar("T_ChildService", bound="ISubService", covariant=True)
 
 
-class ISubService(Generic[T_Service, T_ParentService, T_ChildService],
-                  IService[T_Service, T_ParentService, T_ChildService],
-                  ISubServiceOwner[T_ChildService],
-                  ABC):
+class ISubService(
+    Generic[T_Service, T_ParentService, T_ChildService],
+    IService[T_Service, T_ParentService, T_ChildService],
+    ISubServiceOwner[T_ChildService],
+    ABC,
+):
     ...

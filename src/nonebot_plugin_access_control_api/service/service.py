@@ -14,15 +14,15 @@ from ..event_bus import T_Listener
 from ..models.permission import Permission
 from ..models.rate_limit import RateLimitRule, IRateLimitToken, AcquireTokenResult
 
-T_ParentService = TypeVar(
-    "T_ParentService", bound=Optional["Service"], covariant=True
-)
+T_ParentService = TypeVar("T_ParentService", bound=Optional["Service"], covariant=True)
 T_ChildService = TypeVar("T_ChildService", bound="Service", covariant=True)
 
 
-class Service(Generic[T_ParentService, T_ChildService],
-              IService["Service", T_ParentService, T_ChildService],
-              ABC):
+class Service(
+    Generic[T_ParentService, T_ChildService],
+    IService["Service", T_ParentService, T_ChildService],
+    ABC,
+):
     def __init__(self):
         factory = context.require(IServiceComponentFactory)
         self._patcher_impl = factory.create_patcher_impl(self)
@@ -36,10 +36,10 @@ class Service(Generic[T_ParentService, T_ChildService],
         return self._patcher_impl.patch_handler(retire_on_throw)
 
     async def check_by_subject(
-            self,
-            *subjects: str,
-            acquire_rate_limit_token: bool = True,
-            throw_on_fail: bool = False,
+        self,
+        *subjects: str,
+        acquire_rate_limit_token: bool = True,
+        throw_on_fail: bool = False,
     ) -> bool:
         if not throw_on_fail:
             try:
@@ -75,20 +75,20 @@ class Service(Generic[T_ParentService, T_ChildService],
         return self._permission_impl.on_remove_permission(func)
 
     async def get_permission_by_subject(
-            self, *subject: str, trace: bool = True
+        self, *subject: str, trace: bool = True
     ) -> Optional[Permission]:
         return await self._permission_impl.get_permission_by_subject(
             *subject, trace=trace
         )
 
     def get_permissions(
-            self, *, trace: bool = True
+        self, *, trace: bool = True
     ) -> AsyncGenerator[Permission, None]:
         return self._permission_impl.get_permissions(trace=trace)
 
     @classmethod
     def get_all_permissions_by_subject(
-            cls, *subject: str
+        cls, *subject: str
     ) -> AsyncGenerator[Permission, None]:
         factory = context.require(IServiceComponentFactory)
         return factory.typeof_permission_impl().get_all_permissions_by_subject(*subject)
@@ -114,23 +114,25 @@ class Service(Generic[T_ParentService, T_ChildService],
         return self._rate_limit_impl.on_remove_rate_limit_rule(func)
 
     def get_rate_limit_rules_by_subject(
-            self, *subject: str, trace: bool = True
+        self, *subject: str, trace: bool = True
     ) -> AsyncGenerator[RateLimitRule, None]:
         return self._rate_limit_impl.get_rate_limit_rules_by_subject(
             *subject, trace=trace
         )
 
     def get_rate_limit_rules(
-            self, *, trace: bool = True
+        self, *, trace: bool = True
     ) -> AsyncGenerator[RateLimitRule, None]:
         return self._rate_limit_impl.get_rate_limit_rules(trace=trace)
 
     @classmethod
     def get_all_rate_limit_rules_by_subject(
-            cls, *subject: str
+        cls, *subject: str
     ) -> AsyncGenerator[RateLimitRule, None]:
         factory = context.require(IServiceComponentFactory)
-        return factory.typeof_rate_limit_impl().get_all_rate_limit_rules_by_subject(*subject)
+        return factory.typeof_rate_limit_impl().get_all_rate_limit_rules_by_subject(
+            *subject
+        )
 
     @classmethod
     def get_all_rate_limit_rules(cls) -> AsyncGenerator[RateLimitRule, None]:
@@ -138,7 +140,7 @@ class Service(Generic[T_ParentService, T_ChildService],
         return factory.typeof_rate_limit_impl().get_all_rate_limit_rules()
 
     async def add_rate_limit_rule(
-            self, subject: str, time_span: timedelta, limit: int, overwrite: bool = False
+        self, subject: str, time_span: timedelta, limit: int, overwrite: bool = False
     ) -> RateLimitRule:
         return await self._rate_limit_impl.add_rate_limit_rule(
             subject, time_span, limit, overwrite
@@ -150,12 +152,12 @@ class Service(Generic[T_ParentService, T_ChildService],
         return await factory.typeof_rate_limit_impl().remove_rate_limit_rule(rule_id)
 
     async def acquire_token_for_rate_limit(
-            self, bot: Bot, event: Event
+        self, bot: Bot, event: Event
     ) -> Optional[IRateLimitToken]:
         return await self._rate_limit_impl.acquire_token_for_rate_limit(bot, event)
 
     async def acquire_token_for_rate_limit_receiving_result(
-            self, bot: Bot, event: Event
+        self, bot: Bot, event: Event
     ) -> AcquireTokenResult:
         return (
             await self._rate_limit_impl.acquire_token_for_rate_limit_receiving_result(
@@ -164,14 +166,14 @@ class Service(Generic[T_ParentService, T_ChildService],
         )
 
     async def acquire_token_for_rate_limit_by_subjects(
-            self, *subject: str
+        self, *subject: str
     ) -> Optional[IRateLimitToken]:
         return await self._rate_limit_impl.acquire_token_for_rate_limit_by_subjects(
             *subject
         )
 
     async def acquire_token_for_rate_limit_by_subjects_receiving_result(
-            self, *subject: str
+        self, *subject: str
     ) -> AcquireTokenResult:
         return await self._rate_limit_impl.acquire_token_for_rate_limit_by_subjects_receiving_result(
             *subject

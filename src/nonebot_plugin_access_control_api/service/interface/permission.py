@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Any, Callable, Optional
-from collections.abc import Awaitable, AsyncGenerator
+from typing import Optional
+from collections.abc import AsyncGenerator
 
 from ...event_bus import T_Listener
 from ...models.permission import Permission
@@ -21,20 +21,20 @@ class IServicePermission(ABC):
 
     @abstractmethod
     async def get_permission_by_subject(
-            self, *subject: str, trace: bool = True
+        self, *subject: str, trace: bool = True
     ) -> Optional[Permission]:
         raise NotImplementedError()
 
     @abstractmethod
     def get_permissions(
-            self, *, trace: bool = True
+        self, *, trace: bool = True
     ) -> AsyncGenerator[Permission, None]:
         raise NotImplementedError()
 
     @classmethod
     @abstractmethod
     def get_all_permissions_by_subject(
-            cls, *subject: str
+        cls, *subject: str
     ) -> AsyncGenerator[Permission, None]:
         raise NotImplementedError()
 

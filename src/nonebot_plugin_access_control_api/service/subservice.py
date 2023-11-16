@@ -1,9 +1,8 @@
 from typing import TYPE_CHECKING, Union
 
-from .interface import IService, ISubService
+from .interface import ISubService
 from .service import Service
 from .subservice_owner import SubServiceOwner
-from ..context import context
 
 if TYPE_CHECKING:
     from .plugin_service import PluginService
@@ -12,7 +11,7 @@ if TYPE_CHECKING:
 class SubService(
     SubServiceOwner[Service, Union["PluginService", "SubService"], "SubService"],
     Service["NoneBotService", "SubService"],
-    ISubService[Service, Union["PluginService", "SubService"], "SubService"]
+    ISubService[Service, Union["PluginService", "SubService"], "SubService"],
 ):
     def __init__(self, name: str, parent: Union["PluginService", "SubService"]):
         super().__init__()
