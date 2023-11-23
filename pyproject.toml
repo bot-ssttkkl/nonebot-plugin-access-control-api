@@ -23,14 +23,20 @@ pre-commit = "^3.1.0"
 
 setuptools = "^68.1.2"
 nb-cli = "^1.2.5"
+nonebot-plugin-apscheduler = "^0.3.0"
 
+nonebot2 = {extras = ["fastapi"], version = "^2.1.2"}
 nonebot-adapter-onebot = "*"
 nonebot-adapter-kaiheila = "*"
 nonebot-adapter-qqguild = "*"
 nonebot-adapter-telegram = "*"
 nonebot-adapter-console = "*"
 nonebot-adapter-feishu = "*"
-nonebot-plugin-apscheduler = "^0.3.0"
+
+nonebug = "^0.3.5"
+pytest = "^7.4.3"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
 
 
 [tool.black]
