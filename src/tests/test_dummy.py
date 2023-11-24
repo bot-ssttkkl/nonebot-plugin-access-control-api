@@ -1,12 +1,13 @@
 import pytest
 from nonebug import App
 
-from tests.utils.event import fake_ob11_group_message_event, SELF_ID
+from tests.utils.event import SELF_ID, fake_ob11_group_message_event
 
 
 @pytest.mark.asyncio
 async def test_dummy(app: App):
     from nonebot.adapters.onebot.v11 import Bot
+
     from nonebot_plugin_ac_demo.matcher_demo import a_matcher, b_matcher, c_matcher
 
     async with app.test_matcher(a_matcher) as ctx:

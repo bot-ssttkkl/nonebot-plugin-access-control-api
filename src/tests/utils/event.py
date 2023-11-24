@@ -8,9 +8,11 @@ if TYPE_CHECKING:
 SELF_ID = 12345
 
 
-def fake_ob11_group_message_event(content: str, user_id: int = 23456, group_id=34567) -> "GroupMessageEvent":
-    from nonebot.adapters.onebot.v11 import Message, GroupMessageEvent
+def fake_ob11_group_message_event(
+    content: str, user_id: int = 23456, group_id=34567
+) -> "GroupMessageEvent":
     from nonebot.adapters.onebot.v11.event import Sender
+    from nonebot.adapters.onebot.v11 import Message, GroupMessageEvent
 
     return GroupMessageEvent(
         time=int(time.time()),
@@ -25,4 +27,5 @@ def fake_ob11_group_message_event(content: str, user_id: int = 23456, group_id=3
         raw_message=content,
         font=0,
         sender=Sender(user_id=user_id, nickname=str(user_id)),
-        group_id=group_id)
+        group_id=group_id,
+    )

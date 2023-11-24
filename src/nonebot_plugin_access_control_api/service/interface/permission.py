@@ -1,5 +1,5 @@
-from abc import ABC, abstractmethod
 from typing import Optional
+from abc import ABC, abstractmethod
 from collections.abc import AsyncGenerator
 
 from ...event_bus import T_Listener

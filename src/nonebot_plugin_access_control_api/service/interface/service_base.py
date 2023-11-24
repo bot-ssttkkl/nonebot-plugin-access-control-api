@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from collections.abc import Generator, Collection
 from typing import Generic, TypeVar, Optional
+from collections.abc import Generator, Collection
 
 from nonebot import Bot
 from nonebot.internal.adapter import Event
