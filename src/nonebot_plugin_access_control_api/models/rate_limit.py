@@ -1,6 +1,7 @@
+from abc import ABC
 from collections.abc import Sequence
 from datetime import datetime, timedelta
-from typing import TYPE_CHECKING, Optional, Protocol, NamedTuple
+from typing import TYPE_CHECKING, Optional, NamedTuple
 
 if TYPE_CHECKING:
     from ..service.interface.service import IService
@@ -23,7 +24,7 @@ class RateLimitSingleToken(NamedTuple):
     expire_time: datetime
 
 
-class IRateLimitToken(Protocol):
+class IRateLimitToken(ABC):
     async def retire(self):
         ...
 
