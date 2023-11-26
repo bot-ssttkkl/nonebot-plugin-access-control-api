@@ -77,6 +77,13 @@ c_service = plugin_service.create_subservice('c')
 @c_matcher.handle()
 @c_service.patch_handler()  # 必须在 @c_matcher.handle() 之下
 async def _(matcher: Matcher):
+    ok = do_your_logic()
+
+    if not ok:
+        # 功能执行失败时，收回限流消耗的次数
+        await current_rate_limit_token.get().retire()
+        return 
+
     await matcher.send("c")
 
 ```
@@ -108,14 +115,19 @@ async def _(matcher: Matcher):
 
 5. 手动鉴权
 
-对于非Matcher的功能入口（如APScheduler的定时任务等），需要开发者手动进行鉴权。
+对于非Matcher的功能入口（如APScheduler的定时任务等），需要开发者手动进行鉴权。当然，对于Matcher，如果自动鉴权不能满足你的需求，你也可以使用手动鉴权。
 
-- 方法一：调用`service.check(Bot, Event)`方法，传入Bot及Event实例，返回bool值表示该用户是否具有权限
-- 方法二：调用`service.check_by_subject(*str)`方法，传入主体字符串，返回bool值表示该用户是否具有权限
+- 方法一：调用`service.check(Bot, Event)`方法，传入Bot及Event实例，返回bool值表示该用户是否具有权限。
+调用`service.acquire_token_for_rate_limit(Bot, Event)`方法，传入Bot及Event实例，返回token。
+若token不为None表示限流次数扣除成功，后续可通过`token.retire()`收回限流消耗的次数。
+
+- 方法二：调用`service.check_by_subject(*str)`方法，传入主体字符串，返回bool值表示该用户是否具有权限。
+调用`service.acquire_token_for_rate_limit_by_subject(*str)`方法，传入主体字符串，返回token。
+若token不为None表示限流次数扣除成功，后续可通过`token.retire()`收回限流消耗的次数。
 
 APScheduler示例：[src/nonebot_plugin_ac_demo/apscheduler_demo.py](src/nonebot_plugin_ac_demo/apscheduler_demo.py)
 
-对于一些功能，如果希望在执行失败时不消耗限流次数，则需要开发者手动进行鉴权与限流。
+Matcher手动鉴权示例：
 
 ```python
 d_matcher = on_command('d')
