@@ -1,7 +1,7 @@
 from typing import Optional
 
-from .interface import IService, INoneBotService, IPluginService
 from ..context import context
+from .interface import IService, IPluginService, INoneBotService
 
 
 def get_nonebot_service() -> INoneBotService:

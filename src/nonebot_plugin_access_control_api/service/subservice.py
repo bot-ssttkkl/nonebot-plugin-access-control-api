@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING, Union
 
-from .interface import ISubService
 from .service import Service
+from .interface import ISubService
 from .subservice_owner import SubServiceOwner
 
 if TYPE_CHECKING:

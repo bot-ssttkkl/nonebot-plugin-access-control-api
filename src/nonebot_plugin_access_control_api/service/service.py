@@ -1,17 +1,17 @@
 from abc import ABC
 from datetime import timedelta
-from typing import TypeVar, Optional, Generic, AsyncGenerator
+from typing import Generic, TypeVar, Optional, AsyncGenerator
 
 from nonebot import Bot
 from nonebot.internal.adapter import Event
 from nonebot.internal.matcher import Matcher
 
-from .interface import IService
-from .interface.factory import IServiceComponentFactory
 from ..context import context
-from ..errors import AccessControlError, RateLimitedError, PermissionDeniedError
+from .interface import IService
 from ..event_bus import T_Listener
 from ..models.permission import Permission
+from .interface.factory import IServiceComponentFactory
+from ..errors import RateLimitedError, AccessControlError, PermissionDeniedError
 from ..models.rate_limit import RateLimitRule, IRateLimitToken, AcquireTokenResult
 
 T_ParentService = TypeVar("T_ParentService", bound=Optional["Service"], covariant=True)

@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import TypeVar, Optional, Generic
+from typing import Generic, TypeVar, Optional
 
 from .service import IService
 from .subservice_owner import ISubServiceOwner

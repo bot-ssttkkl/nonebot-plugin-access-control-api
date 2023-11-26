@@ -1,16 +1,16 @@
-from collections.abc import AsyncGenerator
-from datetime import timedelta
 from typing import Optional
+from datetime import timedelta
+from collections.abc import AsyncGenerator
 
+from nonebot_plugin_access_control_api.service.interface import IService
 from nonebot_plugin_access_control_api.event_bus import EventType, T_Listener, on_event
+from nonebot_plugin_access_control_api.service.interface.rate_limit import (
+    IServiceRateLimit,
+)
 from nonebot_plugin_access_control_api.models.rate_limit import (
     RateLimitRule,
     IRateLimitToken,
     AcquireTokenResult,
-)
-from nonebot_plugin_access_control_api.service.interface import IService
-from nonebot_plugin_access_control_api.service.interface.rate_limit import (
-    IServiceRateLimit,
 )
 
 

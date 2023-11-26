@@ -1,12 +1,12 @@
 import re
 from abc import ABC, abstractmethod
 from collections.abc import Collection
-from typing import TypeVar, Optional, Generic
+from typing import Generic, TypeVar, Optional
 
 from nonebot import logger
 
-from .interface import IService, ISubServiceOwner
 from ..errors import AccessControlError
+from .interface import IService, ISubServiceOwner
 
 
 def _validate_name(name: str) -> bool:

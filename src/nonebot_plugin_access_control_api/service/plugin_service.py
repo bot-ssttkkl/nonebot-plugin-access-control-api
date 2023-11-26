@@ -1,9 +1,9 @@
 from typing import TYPE_CHECKING
 
-from .interface.plugin_service import IPluginService
 from .service import Service
 from .subservice import SubService
 from .subservice_owner import SubServiceOwner
+from .interface.plugin_service import IPluginService
 
 if TYPE_CHECKING:
     from .nonebot_service import NoneBotService

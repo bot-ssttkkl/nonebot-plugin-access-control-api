@@ -2,8 +2,8 @@ from typing import Protocol
 
 from . import IService
 from .patcher import IServicePatcher
-from .permission import IServicePermission
 from .rate_limit import IServiceRateLimit
+from .permission import IServicePermission
 
 
 class IServiceComponentFactory(Protocol):
