@@ -25,8 +25,7 @@ class RateLimitSingleToken(NamedTuple):
 
 
 class IRateLimitToken(ABC):
-    async def retire(self):
-        ...
+    async def retire(self): ...
 
 
 class AcquireTokenResult(NamedTuple):

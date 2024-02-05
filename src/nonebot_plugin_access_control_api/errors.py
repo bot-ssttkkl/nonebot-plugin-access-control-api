@@ -6,12 +6,10 @@ if TYPE_CHECKING:
     from .models.rate_limit import AcquireTokenResult
 
 
-class AccessControlError(RuntimeError):
-    ...
+class AccessControlError(RuntimeError): ...
 
 
-class PermissionDeniedError(AccessControlError):
-    ...
+class PermissionDeniedError(AccessControlError): ...
 
 
 class RateLimitedError(AccessControlError):
@@ -19,9 +17,7 @@ class RateLimitedError(AccessControlError):
         self.result = result
 
 
-class AccessControlBadRequestError(BadRequestError, AccessControlError):
-    ...
+class AccessControlBadRequestError(BadRequestError, AccessControlError): ...
 
 
-class AccessControlQueryError(QueryError, AccessControlError):
-    ...
+class AccessControlQueryError(QueryError, AccessControlError): ...

@@ -14,5 +14,4 @@ class ISubService(
     IService[T_Service, T_ParentService, T_ChildService],
     ISubServiceOwner[T_ChildService],
     ABC,
-):
-    ...
+): ...
