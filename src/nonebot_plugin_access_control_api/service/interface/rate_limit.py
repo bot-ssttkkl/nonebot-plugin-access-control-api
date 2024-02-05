@@ -23,36 +23,30 @@ class IServiceRateLimit(ABC):
     @abstractmethod
     def get_rate_limit_rules_by_subject(
         self, *subject: str, trace: bool = True
-    ) -> AsyncGenerator[RateLimitRule, None]:
-        ...
+    ) -> AsyncGenerator[RateLimitRule, None]: ...
 
     @abstractmethod
     def get_rate_limit_rules(
         self, *, trace: bool = True
-    ) -> AsyncGenerator[RateLimitRule, None]:
-        ...
+    ) -> AsyncGenerator[RateLimitRule, None]: ...
 
     @classmethod
     @abstractmethod
     def get_all_rate_limit_rules_by_subject(
         cls, *subject: str
-    ) -> AsyncGenerator[RateLimitRule, None]:
-        ...
+    ) -> AsyncGenerator[RateLimitRule, None]: ...
 
     @classmethod
     @abstractmethod
-    def get_all_rate_limit_rules(cls) -> AsyncGenerator[RateLimitRule, None]:
-        ...
+    def get_all_rate_limit_rules(cls) -> AsyncGenerator[RateLimitRule, None]: ...
 
     @abstractmethod
     async def add_rate_limit_rule(
         self, subject: str, time_span: timedelta, limit: int, overwrite: bool = False
-    ) -> RateLimitRule:
-        ...
+    ) -> RateLimitRule: ...
 
     @classmethod
-    async def remove_rate_limit_rule(cls, rule_id: str) -> bool:
-        ...
+    async def remove_rate_limit_rule(cls, rule_id: str) -> bool: ...
 
     async def acquire_token_for_rate_limit(
         self, bot: Bot, event: Event
@@ -78,10 +72,8 @@ class IServiceRateLimit(ABC):
     @abstractmethod
     async def acquire_token_for_rate_limit_by_subjects_receiving_result(
         self, *subject: str
-    ) -> AcquireTokenResult:
-        ...
+    ) -> AcquireTokenResult: ...
 
     @classmethod
     @abstractmethod
-    async def clear_rate_limit_tokens(cls):
-        ...
+    async def clear_rate_limit_tokens(cls): ...
