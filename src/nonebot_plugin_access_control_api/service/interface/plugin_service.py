@@ -20,5 +20,4 @@ class IPluginService(
 ):
     @property
     @abstractmethod
-    def auto_created(self) -> bool:
-        ...
+    def auto_created(self) -> bool: ...
