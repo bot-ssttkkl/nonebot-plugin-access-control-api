@@ -8,8 +8,7 @@ T2 = TypeVar("T2")
 
 class Provider(ABC, Generic[T]):
     @abstractmethod
-    def provide(self) -> T:
-        ...
+    def provide(self) -> T: ...
 
 
 class InstanceProvider(Provider[T], Generic[T]):
