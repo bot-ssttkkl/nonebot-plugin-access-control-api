@@ -5,6 +5,7 @@ nonebot-plugin-access-control-api
 @License        : MIT
 @GitHub         : https://github.com/bot-ssttkkl/nonebot-access-control-api
 """
+
 from nonebot import require
 
 require("nonebot_plugin_session")
