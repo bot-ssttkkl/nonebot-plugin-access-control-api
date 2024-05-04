@@ -1,7 +1,5 @@
 from typing import TYPE_CHECKING
 
-from ssttkkl_nonebot_utils.errors.errors import QueryError, BadRequestError
-
 if TYPE_CHECKING:
     from .models.rate_limit import AcquireTokenResult
 
@@ -19,9 +17,9 @@ class RateLimitedError(AccessControlError):
         self.result = result
 
 
-class AccessControlBadRequestError(BadRequestError, AccessControlError):
+class AccessControlBadRequestError(AccessControlError):
     ...
 
 
-class AccessControlQueryError(QueryError, AccessControlError):
+class AccessControlQueryError(AccessControlError):
     ...
